@@ -16,10 +16,13 @@ export const contact = catchAsyncErrors(async (req, res, next) => {
 
   await sendEmail(to, subject, text);
 
-  res.header("Access-Control-Allow-Origin", "*").status(200).json({
-    success: true,
-    message: "Your message has been sent.",
-  });
+  res
+    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .status(200)
+    .json({
+      success: true,
+      message: "Your message has been sent.",
+    });
 });
 
 export const requestCourse = catchAsyncErrors(async (req, res, next) => {
@@ -35,10 +38,13 @@ export const requestCourse = catchAsyncErrors(async (req, res, next) => {
 
   await sendEmail(to, subject, text);
 
-  res.header("Access-Control-Allow-Origin", "*").status(200).json({
-    success: true,
-    message: "Your request has been sent.",
-  });
+  res
+    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .status(200)
+    .json({
+      success: true,
+      message: "Your request has been sent.",
+    });
 });
 
 export const getDashboardStats = catchAsyncErrors(async (req, res, next) => {
@@ -92,17 +98,20 @@ export const getDashboardStats = catchAsyncErrors(async (req, res, next) => {
     if (subscriptionsPercentage < 0) subscriptionsProfit = false;
   }
 
-  res.header("Access-Control-Allow-Origin", "*").status(200).json({
-    success: true,
-    statsData,
-    usersCount,
-    subscriptionsCount,
-    viewsCount,
-    subscriptionsPercentage,
-    viewsPercentage,
-    usersPercentage,
-    subscriptionsProfit,
-    viewsProfit,
-    usersProfit,
-  });
+  res
+    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .status(200)
+    .json({
+      success: true,
+      statsData,
+      usersCount,
+      subscriptionsCount,
+      viewsCount,
+      subscriptionsPercentage,
+      viewsPercentage,
+      usersPercentage,
+      subscriptionsProfit,
+      viewsProfit,
+      usersProfit,
+    });
 });

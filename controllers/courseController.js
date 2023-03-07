@@ -20,10 +20,13 @@ export const getAllCourses = catchAsyncErrors(async (req, res, next) => {
     },
   }).select("-lectures");
 
-  res.header("Access-Control-Allow-Origin", "*").status(200).json({
-    success: true,
-    courses,
-  });
+  res
+    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .status(200)
+    .json({
+      success: true,
+      courses,
+    });
 });
 
 export const createCourse = catchAsyncErrors(async (req, res, next) => {
@@ -48,10 +51,13 @@ export const createCourse = catchAsyncErrors(async (req, res, next) => {
     },
   });
 
-  res.header("Access-Control-Allow-Origin", "*").status(201).json({
-    success: true,
-    message: "Course created successfully.",
-  });
+  res
+    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .status(201)
+    .json({
+      success: true,
+      message: "Course created successfully.",
+    });
 });
 
 export const deleteCourse = catchAsyncErrors(async (req, res, next) => {
@@ -71,10 +77,13 @@ export const deleteCourse = catchAsyncErrors(async (req, res, next) => {
 
   await course.remove();
 
-  res.header("Access-Control-Allow-Origin", "*").status(200).json({
-    success: true,
-    message: "Course deleted successfully.",
-  });
+  res
+    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .status(200)
+    .json({
+      success: true,
+      message: "Course deleted successfully.",
+    });
 });
 
 export const getCourseLectures = catchAsyncErrors(async (req, res, next) => {
@@ -86,10 +95,13 @@ export const getCourseLectures = catchAsyncErrors(async (req, res, next) => {
 
   await course.save();
 
-  res.header("Access-Control-Allow-Origin", "*").status(200).json({
-    success: true,
-    lectures: course.lectures,
-  });
+  res
+    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .status(200)
+    .json({
+      success: true,
+      lectures: course.lectures,
+    });
 });
 
 //max video size : 100mb(free)
@@ -123,10 +135,13 @@ export const addCourseLecture = catchAsyncErrors(async (req, res, next) => {
 
   await course.save();
 
-  res.header("Access-Control-Allow-Origin", "*").status(200).json({
-    success: true,
-    message: "Lecture added",
-  });
+  res
+    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .status(200)
+    .json({
+      success: true,
+      message: "Lecture added",
+    });
 });
 
 export const deleteLecture = catchAsyncErrors(async (req, res, next) => {
@@ -155,10 +170,13 @@ export const deleteLecture = catchAsyncErrors(async (req, res, next) => {
 
   await course.save();
 
-  res.header("Access-Control-Allow-Origin", "*").status(200).json({
-    success: true,
-    message: "Lecture deleted successfully",
-  });
+  res
+    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .status(200)
+    .json({
+      success: true,
+      message: "Lecture deleted successfully",
+    });
 });
 
 Course.watch().on("change", async () => {
