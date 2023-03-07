@@ -16,7 +16,7 @@ export const contact = catchAsyncErrors(async (req, res, next) => {
 
   await sendEmail(to, subject, text);
 
-  res.status(200).json({
+  res.header("Access-Control-Allow-Origin", "*").status(200).json({
     success: true,
     message: "Your message has been sent.",
   });
@@ -35,7 +35,7 @@ export const requestCourse = catchAsyncErrors(async (req, res, next) => {
 
   await sendEmail(to, subject, text);
 
-  res.status(200).json({
+  res.header("Access-Control-Allow-Origin", "*").status(200).json({
     success: true,
     message: "Your request has been sent.",
   });
@@ -92,7 +92,7 @@ export const getDashboardStats = catchAsyncErrors(async (req, res, next) => {
     if (subscriptionsPercentage < 0) subscriptionsProfit = false;
   }
 
-  res.status(200).json({
+  res.header("Access-Control-Allow-Origin", "*").status(200).json({
     success: true,
     statsData,
     usersCount,

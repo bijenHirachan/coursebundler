@@ -12,7 +12,7 @@ import { Stats } from "../models/Stats.js";
 export const getAllUsers = catchAsyncErrors(async (req, res, next) => {
   const users = await User.find();
 
-  res.json({
+  res.header("Access-Control-Allow-Origin", "*").json({
     success: true,
     users,
   });
@@ -67,6 +67,7 @@ export const login = catchAsyncErrors(async (req, res, next) => {
 
 export const logout = catchAsyncErrors(async (req, res, next) => {
   res
+    .header("Access-Control-Allow-Origin", "*")
     .status(200)
     .cookie("token", null, {
       expires: new Date(Date.now()),
@@ -83,13 +84,10 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
 export const getMyProfile = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.user._id);
 
-  res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
-    .status(200)
-    .json({
-      success: true,
-      user,
-    });
+  res.header("Access-Control-Allow-Origin", "*").status(200).json({
+    success: true,
+    user,
+  });
 });
 
 export const changePassword = catchAsyncErrors(async (req, res, next) => {
@@ -109,7 +107,7 @@ export const changePassword = catchAsyncErrors(async (req, res, next) => {
 
   await user.save();
 
-  res.status(200).json({
+  res.header("Access-Control-Allow-Origin", "*").status(200).json({
     success: true,
     message: "Password changed successfully.",
   });
@@ -125,7 +123,7 @@ export const updateProfile = catchAsyncErrors(async (req, res, next) => {
 
   await user.save();
 
-  res.status(200).json({
+  res.header("Access-Control-Allow-Origin", "*").status(200).json({
     success: true,
     message: "Profile updated successfully.",
   });
@@ -151,7 +149,7 @@ export const updateProfilePicture = catchAsyncErrors(async (req, res, next) => {
 
   await user.save();
 
-  res.status(200).json({
+  res.header("Access-Control-Allow-Origin", "*").status(200).json({
     success: true,
     message: "Profile picture updated successfully.",
   });
@@ -173,10 +171,13 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
   await sendEmail(user.email, "CourseBundler Reset Password", message);
 
-  res.status(200).json({
-    success: true,
-    message: `Reset token has been sent to ${user.email} successfully.`,
-  });
+  res
+    .header("Access-Control-Allow-Origin", "*")
+    .status(200)
+    .json({
+      success: true,
+      message: `Reset token has been sent to ${user.email} successfully.`,
+    });
 });
 
 export const resetPassword = catchAsyncErrors(async (req, res, next) => {
@@ -205,7 +206,7 @@ export const resetPassword = catchAsyncErrors(async (req, res, next) => {
 
   await user.save();
 
-  res.status(200).json({
+  res.header("Access-Control-Allow-Origin", "*").status(200).json({
     success: true,
     message: "Password reset successful.",
   });
@@ -230,7 +231,7 @@ export const addToPlaylist = catchAsyncErrors(async (req, res, next) => {
 
   await user.save();
 
-  res.status(200).json({
+  res.header("Access-Control-Allow-Origin", "*").status(200).json({
     success: true,
     message: "Added to playlist",
   });
@@ -250,7 +251,7 @@ export const removeFromPlaylist = catchAsyncErrors(async (req, res, next) => {
 
   await user.save();
 
-  res.status(200).json({
+  res.header("Access-Control-Allow-Origin", "*").status(200).json({
     success: true,
     message: "Removed from playlist",
   });
@@ -266,7 +267,7 @@ export const updateUserRole = catchAsyncErrors(async (req, res, next) => {
 
   await user.save();
 
-  res.status(200).json({
+  res.header("Access-Control-Allow-Origin", "*").status(200).json({
     success: true,
     message: "Role updated successfully",
   });
@@ -283,7 +284,7 @@ export const deleteUser = catchAsyncErrors(async (req, res, next) => {
 
   await user.remove();
 
-  res.status(200).json({
+  res.header("Access-Control-Allow-Origin", "*").status(200).json({
     success: true,
     message: "User deleted successfully",
   });
@@ -299,6 +300,7 @@ export const deleteMyProfile = catchAsyncErrors(async (req, res, next) => {
   await user.remove();
 
   res
+    .header("Access-Control-Allow-Origin", "*")
     .status(200)
     .cookie("token", null, {
       expires: new Date(Date.now()),
