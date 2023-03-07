@@ -83,10 +83,13 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
 export const getMyProfile = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.user._id);
 
-  res.status(200).json({
-    success: true,
-    user,
-  });
+  res
+    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .status(200)
+    .json({
+      success: true,
+      user,
+    });
 });
 
 export const changePassword = catchAsyncErrors(async (req, res, next) => {

@@ -8,9 +8,13 @@ export const sendToken = (res, user, message, statusCode = 200) => {
     sameSite: "none",
   };
 
-  res.status(201).cookie("token", token, options).json({
-    success: true,
-    message,
-    user,
-  });
+  res
+    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .status(201)
+    .cookie("token", token, options)
+    .json({
+      success: true,
+      message,
+      user,
+    });
 };
