@@ -14,7 +14,17 @@ config({
 
 const app = express();
 
-app.use(cors({ origin: true }));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+    optionsSuccessStatus: 200,
+  })
+);
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+});
 
 app.use(cookieParser());
 app.use(express.json());
