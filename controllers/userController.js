@@ -12,7 +12,7 @@ import { Stats } from "../models/Stats.js";
 export const getAllUsers = catchAsyncErrors(async (req, res, next) => {
   const users = await User.find();
 
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000").json({
+  res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL).json({
     success: true,
     users,
   });
@@ -67,7 +67,7 @@ export const login = catchAsyncErrors(async (req, res, next) => {
 
 export const logout = catchAsyncErrors(async (req, res, next) => {
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .cookie("token", null, {
       expires: new Date(Date.now()),
@@ -85,7 +85,7 @@ export const getMyProfile = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.user._id);
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .json({
       success: true,
@@ -111,7 +111,7 @@ export const changePassword = catchAsyncErrors(async (req, res, next) => {
   await user.save();
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .json({
       success: true,
@@ -130,7 +130,7 @@ export const updateProfile = catchAsyncErrors(async (req, res, next) => {
   await user.save();
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .json({
       success: true,
@@ -159,7 +159,7 @@ export const updateProfilePicture = catchAsyncErrors(async (req, res, next) => {
   await user.save();
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .json({
       success: true,
@@ -184,7 +184,7 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
   await sendEmail(user.email, "CourseBundler Reset Password", message);
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .json({
       success: true,
@@ -219,7 +219,7 @@ export const resetPassword = catchAsyncErrors(async (req, res, next) => {
   await user.save();
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .json({
       success: true,
@@ -247,7 +247,7 @@ export const addToPlaylist = catchAsyncErrors(async (req, res, next) => {
   await user.save();
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .json({
       success: true,
@@ -270,7 +270,7 @@ export const removeFromPlaylist = catchAsyncErrors(async (req, res, next) => {
   await user.save();
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .json({
       success: true,
@@ -289,7 +289,7 @@ export const updateUserRole = catchAsyncErrors(async (req, res, next) => {
   await user.save();
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .json({
       success: true,
@@ -309,7 +309,7 @@ export const deleteUser = catchAsyncErrors(async (req, res, next) => {
   await user.remove();
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .json({
       success: true,
@@ -327,7 +327,7 @@ export const deleteMyProfile = catchAsyncErrors(async (req, res, next) => {
   await user.remove();
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .cookie("token", null, {
       expires: new Date(Date.now()),

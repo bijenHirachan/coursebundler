@@ -9,7 +9,7 @@ export const sendToken = (res, user, message, statusCode = 200) => {
   };
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(201)
     .cookie("token", token, options)
     .json({

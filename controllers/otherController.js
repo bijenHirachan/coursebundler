@@ -17,7 +17,7 @@ export const contact = catchAsyncErrors(async (req, res, next) => {
   await sendEmail(to, subject, text);
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .json({
       success: true,
@@ -39,7 +39,7 @@ export const requestCourse = catchAsyncErrors(async (req, res, next) => {
   await sendEmail(to, subject, text);
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .json({
       success: true,
@@ -99,7 +99,7 @@ export const getDashboardStats = catchAsyncErrors(async (req, res, next) => {
   }
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .json({
       success: true,

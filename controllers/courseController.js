@@ -18,10 +18,10 @@ export const getAllCourses = catchAsyncErrors(async (req, res, next) => {
       $regex: category,
       $options: "i",
     },
-  }).select("-lectures");
+  });
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .json({
       success: true,
@@ -52,7 +52,7 @@ export const createCourse = catchAsyncErrors(async (req, res, next) => {
   });
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(201)
     .json({
       success: true,
@@ -78,7 +78,7 @@ export const deleteCourse = catchAsyncErrors(async (req, res, next) => {
   await course.remove();
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .json({
       success: true,
@@ -96,7 +96,7 @@ export const getCourseLectures = catchAsyncErrors(async (req, res, next) => {
   await course.save();
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .json({
       success: true,
@@ -136,7 +136,7 @@ export const addCourseLecture = catchAsyncErrors(async (req, res, next) => {
   await course.save();
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .json({
       success: true,
@@ -171,7 +171,7 @@ export const deleteLecture = catchAsyncErrors(async (req, res, next) => {
   await course.save();
 
   res
-    .header("Access-Control-Allow-Origin", "http://localhost:3000")
+    .header("Access-Control-Allow-Origin", process.env.FRONTEND_URL)
     .status(200)
     .json({
       success: true,
